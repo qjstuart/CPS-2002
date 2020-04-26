@@ -15,7 +15,10 @@ class Map:
         if n >= 5 and x < 8:
             return False
 
-        self.size = x
-        print("Size: ", self.size)
+        else:
+            self.size = x
+            print("Size: ", self.size)
+            return True
+
 
     # def generate():
