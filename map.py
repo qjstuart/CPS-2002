@@ -1,5 +1,3 @@
-import HTML
-
 
 class Map:
     size = 0
@@ -21,7 +19,3 @@ class Map:
         print("Size: ", self.size)
 
     # def generate():
-
-
-test_map = Map()
-test_map.set_map_size(5, 3)
