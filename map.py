@@ -32,5 +32,4 @@ class Map:
     # def generate():
 
 
-class Tile:
-    type = ["treasure", "water", "grass"]
+
