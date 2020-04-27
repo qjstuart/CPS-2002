@@ -28,3 +28,9 @@ class Map:
             print("Size: ", self.size)
             return True
 
+
+    # def generate():
+
+
+class Tile:
+    type = ["treasure", "water", "grass"]
