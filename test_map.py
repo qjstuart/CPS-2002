@@ -18,6 +18,12 @@ class TestSetMapSize(unittest.TestCase):
         self.assertFalse(m1.set_map_size(0, 8))
         self.assertFalse(m1.set_map_size(0, 9))
 
+        # Test map of size 5x5 - 50x50 for 2-8 players
+        self.assertTrue(m1.set_map_size(5, 2))
+        self.assertTrue(m1.set_map_size(8, 4))
+        self.assertTrue(m1.set_map_size(35, 6))
+        self.assertTrue(m1.set_map_size(50, 8))
+
     def test_values(self):
 
         m1 = Map()

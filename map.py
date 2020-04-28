@@ -1,10 +1,16 @@
+import tile
+import math
+import random
+
+
 class Map:
-    size = 0
+    size = None
+    tiles = [], []
 
-    # def __init__(self, size):`
-    #     self.size = size
-
-    # def generate():
+    def reset_map(self):
+        self.size = 0
+        self.tiles = None
+        return self
 
     def set_map_size(self, x, n):
 
@@ -25,11 +31,49 @@ class Map:
 
         else:
             self.size = x
-            print("Size: ", self.size)
             return True
 
+    def generate_map(self):
 
-    # def generate():
+        if self.size < 5 or self.size > 50:
+            raise Exception("Map size cannot be smaller than 5x5 or larger than 50x50.")
 
+        tiles = [self.size][self.size]
 
+    def generate_water_tiles(self):
 
+        total_tiles = self.size * self.size
+        total_water_tiles = math.floor(0.2 * total_tiles)
+
+        # Populate 2D array with tile types
+        i = 1
+        while i < total_water_tiles:
+
+            row = random.randint(1, self.size)
+            col = random.randint(1, self.size)
+
+            ''' 
+            If there is no tile in randomly selected coordinate,
+            place a Water Tile at that coordinate.
+            '''
+
+            if self.tiles[row][col] is None:
+                self.tiles[row][col] = tile.WaterTile()
+                i += 1
+
+    def generate_treasure_tile(self):
+
+        row = random.randint(1, self.size)
+        col = random.randint(1, self.size)
+
+        if self.tiles[row][col] is None:
+            self.tiles[row][col] = tile.TreasureTile()
+
+        else:
+            self.generate_treasure_tile()
+
+    def generate_grass_tile(self):
+        for i in self.size:
+            for j in self.size:
+                if self.tiles[i][j] is None:
+                    self.tiles[i][j] = tile.GrassTile()
