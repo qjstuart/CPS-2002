@@ -1,6 +1,6 @@
 import unittest
 from map import Map
-import tile
+from tile import TreasureTile
 
 
 class TestSetMapSize(unittest.TestCase):
@@ -39,15 +39,22 @@ class TestSetMapSize(unittest.TestCase):
     def test_map_generation(self):
 
         m1 = Map()
+        t1 = TreasureTile()
         m1.set_map_size(30, 2)
         m1.generate_map()
+
         count = 0
-        for i in m1.size:
-            for j in m1.size:
-                if m1.tiles[i][j].get_status(self) == 'GREEN':
+        for i in range(m1.size):
+            for j in range(m1.size):
+                if m1.tiles[i][j].get_status() == t1.get_status():
                     count += 1
 
         self.assertEqual(count, 1)
+        self.assertIsInstance()
+
+
+
+
 
 
 
