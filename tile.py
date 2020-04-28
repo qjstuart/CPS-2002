@@ -3,9 +3,9 @@ import enum
 
 class Tile:
     class Status(enum.Enum):
-        grass = 1
-        water = 2
-        treasure = 3
+        GRASS = 1
+        WATER = 2
+        TREASURE = 3
 
     # HTML representing hidden tile
     element_not_visited = "<img alt=\"Hidden tile\" src=...>"

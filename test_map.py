@@ -1,5 +1,6 @@
 import unittest
 from map import Map
+import tile
 
 
 class TestSetMapSize(unittest.TestCase):
@@ -34,5 +35,20 @@ class TestSetMapSize(unittest.TestCase):
         # Test negative map size and number of players
         self.assertRaises(ValueError, m1.set_map_size, -5, 2)
         self.assertRaises(ValueError, m1.set_map_size, 5, -2)
+
+    def test_map_generation(self):
+
+        m1 = Map()
+        m1.set_map_size(30, 2)
+        m1.generate_map()
+        count = 0
+        for i in m1.size:
+            for j in m1.size:
+                if m1.tiles[i][j].get_status(self) == 'GREEN':
+                    count += 1
+
+        self.assertEqual(count, 1)
+
+
 
 

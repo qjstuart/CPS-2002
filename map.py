@@ -4,8 +4,8 @@ import random
 
 
 class Map:
-    size = None
-    tiles = [], []
+    size = 0
+    tiles = None
 
     def reset_map(self):
         self.size = 0
@@ -38,7 +38,10 @@ class Map:
         if self.size < 5 or self.size > 50:
             raise Exception("Map size cannot be smaller than 5x5 or larger than 50x50.")
 
-        tiles = [self.size][self.size]
+        self.tiles = [[1 for i in range(self.size)] for j in range(self.size)]
+        self.generate_water_tiles()
+        self.generate_treasure_tile()
+        self.generate_grass_tile()
 
     def generate_water_tiles(self):
 
@@ -49,31 +52,37 @@ class Map:
         i = 1
         while i < total_water_tiles:
 
-            row = random.randint(1, self.size)
-            col = random.randint(1, self.size)
+            row = random.randint(0, self.size - 1)
+            col = random.randint(0, self.size - 1)
 
             ''' 
             If there is no tile in randomly selected coordinate,
             place a Water Tile at that coordinate.
             '''
 
-            if self.tiles[row][col] is None:
+            if self.tiles[row][col] == 1:
                 self.tiles[row][col] = tile.WaterTile()
                 i += 1
 
     def generate_treasure_tile(self):
 
-        row = random.randint(1, self.size)
-        col = random.randint(1, self.size)
+        row = random.randint(0, self.size - 1)
+        col = random.randint(0, self.size - 1)
 
-        if self.tiles[row][col] is None:
+        if self.tiles[row][col] == 1:
             self.tiles[row][col] = tile.TreasureTile()
 
         else:
             self.generate_treasure_tile()
 
     def generate_grass_tile(self):
-        for i in self.size:
-            for j in self.size:
-                if self.tiles[i][j] is None:
+        for i in range(self.size):
+            for j in range(self.size):
+                if self.tiles[i][j] == 1:
                     self.tiles[i][j] = tile.GrassTile()
+
+
+test = Map()
+test.set_map_size(5, 2)
+test.generate_map()
+print(test.tiles)
