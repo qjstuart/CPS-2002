@@ -22,7 +22,7 @@ class TreasureTile(Tile):
         return self.element_treasure_tile
 
     def get_status(self):
-        return self.Status.treasure.name
+        return self.Status.TREASURE.name
 
 
 class WaterTile(Tile):
@@ -36,7 +36,7 @@ class WaterTile(Tile):
         return self.element_water_tile
 
     def get_status(self):
-        return self.Status.water.name
+        return self.Status.WATER.name
 
 
 class GrassTile(Tile):
@@ -50,4 +50,4 @@ class GrassTile(Tile):
         return self.element_grass_tile
 
     def get_status(self):
-        return self.Status.grass.name
+        return self.Status.GRASS.name
