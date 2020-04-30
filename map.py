@@ -81,8 +81,3 @@ class Map:
                 if self.tiles[i][j] == 1:
                     self.tiles[i][j] = tile.GrassTile()
 
-
-test = Map()
-test.set_map_size(5, 2)
-test.generate_map()
-print(test.tiles)
