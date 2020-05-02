@@ -1,5 +1,6 @@
 from position import Position
 from map import Map
+import random
 
 
 class Player:
@@ -20,6 +21,7 @@ class Player:
 
     def generate_rand_pos(self):
 
-        size = Map.getMap()
+        size = Map.get_instance().get_size
+
         row = random.randint(0, self.size - 1)
         col = random.randint(0, self.size - 1)

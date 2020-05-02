@@ -1,4 +1,4 @@
-import tile
+from tile import *
 import math
 import random
 
@@ -45,6 +45,18 @@ class Map:
             self.size = x
             return True
 
+    def get_map_size(self):
+        return self.size
+
+    def is_valid_start(self, row, col):
+        if self.tiles is None:
+            raise Exception("Map is not initialized.")
+
+        if self.tiles[row][col] != tile.GrassTile():
+            return False
+
+        return True
+
     def generate_map(self):
 
         if self.size < 5 or self.size > 50:
@@ -54,6 +66,8 @@ class Map:
         self.generate_water_tiles()
         self.generate_treasure_tile()
         self.generate_grass_tile()
+
+        return self.tiles
 
     def generate_water_tiles(self):
 
@@ -95,3 +109,11 @@ class Map:
 
     def get_tile(self, row, col):
         return self.tiles[row][col]
+
+
+s = Map()
+print(s)
+s = Map.get_instance()
+print(s)
+t = Map.get_instance()
+print(t)
