@@ -107,5 +107,7 @@ class Map:
                 if self.tiles[i][j] == 1:
                     self.tiles[i][j] = tile.GrassTile()
 
+
     def get_tile(self, row, col):
         return self.tiles[row][col]
+
