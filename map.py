@@ -4,8 +4,20 @@ import random
 
 
 class Map:
+    __instance = None
     size = 0
     tiles = None
+
+    def get_instance():
+        if Map.__instance is None:
+            Map()
+        return Map.__instance
+
+    def __init__(self):
+        if Map.__instance is not None:
+            raise Exception("This class is a singleton!")
+        else:
+            Map.__instance = self
 
     def reset_map(self):
         self.size = 0
@@ -81,3 +93,5 @@ class Map:
                 if self.tiles[i][j] == 1:
                     self.tiles[i][j] = tile.GrassTile()
 
+    def get_tile(self, row, col):
+        return self.tiles[row][col]
