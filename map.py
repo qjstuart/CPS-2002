@@ -4,8 +4,20 @@ import random
 
 
 class Map:
+    __instance = None
     size = 0
     tiles = None
+
+    def get_instance():
+        if Map.__instance is None:
+            Map()
+        return Map.__instance
+
+    def __init__(self):
+        if Map.__instance is not None:
+            raise Exception("This class is a singleton!")
+        else:
+            Map.__instance = self
 
     def reset_map(self):
         self.size = 0
@@ -33,6 +45,18 @@ class Map:
             self.size = x
             return True
 
+    def get_map_size(self):
+        return self.size
+
+    def is_valid_start(self, row, col):
+        if self.tiles is None:
+            raise Exception("Map is not initialized.")
+
+        if self.tiles[row][col] != tile.GrassTile():
+            return False
+
+        return True
+
     def generate_map(self):
 
         if self.size < 5 or self.size > 50:
@@ -42,6 +66,8 @@ class Map:
         self.generate_water_tiles()
         self.generate_treasure_tile()
         self.generate_grass_tile()
+
+        return self.tiles
 
     def generate_water_tiles(self):
 
@@ -81,3 +107,5 @@ class Map:
                 if self.tiles[i][j] == 1:
                     self.tiles[i][j] = tile.GrassTile()
 
+    def get_tile(self, row, col):
+        return self.tiles[row][col]

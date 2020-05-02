@@ -10,6 +10,9 @@ class Tile:
     # HTML representing hidden tile
     element_not_visited = "<img alt=\"Hidden tile\" src=...>"
 
+    def get_status(self):
+        return self.Status
+
 
 class TreasureTile(Tile):
     # HTML representing a treasure tile
