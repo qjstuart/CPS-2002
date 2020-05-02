@@ -1,4 +1,34 @@
 import map
+from pyhtml import *
 
-test_map = map.Map()
-test_map.set_map_size(5, 3)
+
+def f_links(ctx):
+    for title, page in [('Home', '/home.html'),
+                        ('Login', '/login.html')]:
+        yield li(a(href=page)(title))
+
+
+t = html(
+    head(
+        title('Awesome website'),
+        script(src="http://path.to/script.js")
+    ),
+    body(
+        header(
+            img(src='/path/to/logo.png'),
+            nav(
+                ul(f_links)
+            )
+        ),
+        div(
+            lambda ctx: "Hello %s" % ctx.get('user', 'Guest'),
+            'Content here'
+        ),
+        footer(
+            hr,
+            'Copyright 2013'
+        )
+    )
+)
+
+print(t.render(user='user'))
