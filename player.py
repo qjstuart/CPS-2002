@@ -11,17 +11,15 @@ class Player:
     visited_tiles = None    # list storing tile objects
     past_moves = None       # list storing directions
 
-    def __init__(self, id):
-        self.id = id
+    def __init__(self, identity):
+        self.id = identity
         self.winner = False
-        self.start_pos = generate_rand_pos()
-        self.current_pos = Position(self.start_pos)
         self.visited_tiles = []
         self.past_moves = []
 
     def generate_rand_pos(self):
 
-        size = Map.get_instance().get_size
-
-        row = random.randint(0, self.size - 1)
-        col = random.randint(0, self.size - 1)
+        size = Map.get_instance().get_map_size
+        row = random.randint(0, size - 1)
+        col = random.randint(0, size - 1)
+        return Position(row, col)
