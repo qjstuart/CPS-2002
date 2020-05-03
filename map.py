@@ -3,7 +3,7 @@ import math
 import random
 
 
-class Map:
+class Map():
     __instance = None
     size = 0
     tiles = None
@@ -14,9 +14,6 @@ class Map:
         return Map.__instance
 
     def __init__(self):
-        if Map.__instance is not None:
-            raise Exception("This class is a singleton!")
-        else:
             Map.__instance = self
 
     def reset_map(self):
