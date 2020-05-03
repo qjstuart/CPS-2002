@@ -3,7 +3,7 @@ import math
 import random
 
 
-class Map:
+class Map():
     __instance = None
     size = 0
     tiles = None
