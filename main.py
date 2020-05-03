@@ -32,3 +32,6 @@ t = html(
 )
 
 print(t.render(user='user'))
+render = t.render()
+f = open("map_player_n.html", "w")
+f.write(render)
